@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DMF SYSTEM</title>
     <link rel="icon" type="image/png" href="images/icone.png">
-    <meta name="description" content="Site pessoal de Danielton Machado Francisco, Analista de Sistemas, com projetos e contato.">
-    <meta name="keywords" content="Danielton Machado Francisco, DMF SYSTEM, Analista de Sistemas, Tecnologia, Projetos">
-    <meta name="author" content="Danielton Machado Francisco">
 
     <style>
         :root {
@@ -27,7 +24,6 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            scroll-behavior: smooth;
         }
 
         body.light-mode { background-color: var(--bg-light); color: var(--text-dark); }
@@ -35,272 +31,172 @@
 
         .background {
             position: fixed;
-            top: 0; left: 0;
             width: 100%; height: 100%;
-            background-image: url('images/dmf-system.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            z-index: -1;
+            background: url('images/dmf-system.jpg') center/cover no-repeat;
             opacity: 0.1;
+            z-index: -1;
         }
 
-        header {
-            text-align: center;
-            margin-top: 60px;
-        }
+        header { text-align: center; margin-top: 60px; }
+        header img { max-width: 300px; }
 
-        header img { max-width: 300px; margin: 10px 0; }
-
-        nav.nav-links {
+        nav {
             position: fixed;
             top: 10px; left: 50%;
             transform: translateX(-50%);
-            background-color: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.7);
             padding: 10px;
             border-radius: 5px;
-            z-index: 10;
         }
 
-        nav.nav-links a {
-            text-decoration: none;
+        nav a {
             color: #fff;
             margin: 0 15px;
-            font-size: 18px;
+            text-decoration: none;
         }
 
-        nav.nav-links a:hover { color: var(--secondary-color); }
-
         main {
-            flex-grow: 1;
             padding: 20px;
-            background-color: rgba(0,0,0,0.7);
-            border-radius: 10px;
-            margin: 0 auto;
+            background: rgba(0,0,0,0.7);
             max-width: 1200px;
+            margin: auto;
+            border-radius: 10px;
             color: #fff;
-            backdrop-filter: blur(5px);
         }
 
         section { margin-bottom: 40px; }
 
-        /* Sobre */
-        #sobre p { margin-bottom: 15px; }
-
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
             gap: 20px;
         }
 
         .project {
-            background: var(--card-bg);
             padding: 15px;
             border-radius: 5px;
+            background: var(--card-bg);
             border: 1px solid var(--card-border);
-            transition: transform 0.3s, box-shadow 0.3s;
         }
-
-        .project:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
 
         .details-button {
-            display: inline-block;
-            background-color: var(--primary-color);
+            background: var(--primary-color);
             color: #fff;
-            text-decoration: none;
-            padding: 10px 20px;
+            padding: 10px;
             border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .details-button:hover { background-color: var(--primary-hover); }
-
-        .whatsapp-btn {
-            position: fixed;
-            bottom: 100px;
-            right: 20px;
-            z-index: 100;
-            background-color: #25D366;
-            color: #fff;
-            padding: 12px 20px;
-            border-radius: 50px;
             text-decoration: none;
         }
 
         footer {
-            background: rgba(0,0,0,0.9);
-            color: #fff;
             text-align: center;
             padding: 20px;
-            position: relative;
-            z-index: 1;
+            background: rgba(0,0,0,0.9);
+            color: #fff;
         }
-
-        footer ul.social-icons {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            margin: 10px 0;
-        }
-
-        footer ul.social-icons li { margin: 0 10px; }
-        footer ul.social-icons a { text-decoration: none; color: #fff; font-weight: bold; }
-        footer ul.social-icons a:hover { color: var(--secondary-color); }
 
         #user-location {
             position: fixed;
-            bottom: 0; left: 0;
+            bottom: 0;
             width: 100%;
-            background-color: rgba(0,123,255,0.7);
+            background: rgba(0,123,255,0.7);
             color: #fff;
-            padding: 10px 20px;
+            padding: 10px;
             text-align: center;
-            font-size: 16px;
-            z-index: 10;
         }
 
         .toggle-container {
             position: fixed;
-            bottom: 40px; left: 10px;
-            z-index: 100;
-        }
-
-        .toggle-container input { opacity: 0; width: 0; height: 0; }
-        .toggle {
-            position: relative;
-            display: block;
-            width: 60px; height: 30px;
-            background-color: #ccc;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: background-color 0.4s;
-        }
-
-        .toggle:before {
-            content:"";
-            position: absolute;
-            left:4px; bottom:4px;
-            width:22px; height:22px;
-            background-color:#fff;
-            border-radius:50%;
-            transition: transform 0.4s;
-        }
-
-        input:checked + .toggle { background-color: #4CAF50; }
-        input:checked + .toggle:before { transform: translateX(30px); }
-
-        @media(max-width:768px){
-            nav.nav-links{ left:20px; transform:none; width:100%; padding:15px 0; text-align:center; }
-            nav.nav-links a{ display:block; margin:10px 0; }
-            main{ padding:10px; margin:10px; }
-            .projects-grid{ grid-template-columns: 1fr; }
-            #user-location{ font-size:14px; }
-        }
-
-        @media(max-width:480px){
-            header img{ max-width:200px; }
-            .details-button{ padding:8px 16px; }
+            bottom: 50px;
+            left: 10px;
         }
     </style>
 </head>
 
 <body class="dark-mode">
 
-    <div class="background"></div>
+<div class="background"></div>
 
-    <nav class="nav-links" aria-label="Menu de navegação principal">
-        <a href="#sobre">Sobre</a>
-        <a href="#projetos">Projetos</a>
-        <a href="#contato">Contato</a>
-    </nav>
+<nav>
+    <a href="#sobre">Sobre</a>
+    <a href="#projetos">Projetos</a>
+    <a href="#contato">Contato</a>
+</nav>
 
-    <div id="user-location">Carregando localização...</div>
+<div id="user-location">Carregando localização...</div>
 
-    <header>
-        <h1>DMF SYSTEM</h1>
-        <img src="images/dmf-system.jpg" alt="Logo DMF SYSTEM" loading="lazy">
-    </header>
+<header>
+    <h1>DMF SYSTEM</h1>
+    <img src="images/dmf-system.jpg">
+</header>
 
-    <main>
-        <section id="sobre">
-            <h2>Sobre</h2>
-            <p>Olá! Eu sou o Danielton Machado Francisco, um apaixonado por tecnologia que transformou o interesse por sistemas em profissão. Tenho 32 anos e sou Analista de Sistemas, formado em Análise e Desenvolvimento de Sistemas e com pós-graduação em Banco de Dados.</p>
-            <p>Minha missão? Resolver problemas com soluções criativas e funcionais no mundo dos sistemas. Adoro enfrentar desafios tecnológicos e transformar ideias em realidades que fazem a diferença.</p>
-            <p>Quando não estou mergulhado em códigos ou otimizando bancos de dados, estou explorando novas ferramentas e tendências do universo tech – porque, vamos combinar, aprender é um vício para quem ama tecnologia.</p>
-            <p>Se você precisa de alguém para descomplicar sistemas ou criar soluções inteligentes, pode contar comigo!</p>
-        </section>
+<main>
 
-        <section id="projetos">
-            <h2>Projetos</h2>
-            <div class="projects-grid">
-                <div class="project">
-                    <h3>Izing - Sistema de Gestão Multicanais</h3>
-                    <ul>
-                        <li>Múltiplos canais de atendimento</li>
-                        <li>Múltiplos usuários simultâneos</li>
-                        <li>Chatbot interativo</li>
-                        <li>Automação de assistente virtual</li>
-                    </ul>
-                    <a href="http://163.245.203.157:8585" target="_blank" class="details-button">Mais Informações</a>
-                </div>
-            </div>
-        </section>
+<section id="sobre">
+    <h2>Sobre</h2>
+    <p>Sou analista de sistemas apaixonado por tecnologia.</p>
+</section>
 
-        <section id="contato">
-            <h2>Contato</h2>
-            <a href="https://wa.me/5544984531288?text=Olá,%20venho%20através%20do%20site." target="_blank" class="details-button whatsapp-btn">Falar no WhatsApp</a>
-        </section>
-    </main>
-
-    <footer>
-        <div id="datetime"></div>
-        <ul class="social-icons">
-            <li><a href="https://facebook.com" target="_blank" aria-label="Facebook">Facebook</a></li>
-            <li><a href="https://twitter.com" target="_blank" aria-label="Twitter">Twitter</a></li>
-            <li><a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">LinkedIn</a></li>
-            <li><a href="https://instagram.com" target="_blank" aria-label="Instagram">Instagram</a></li>
-        </ul>
-        <p>&copy; 2024 DMF SYSTEM. Todos os direitos reservados.</p>
-    </footer>
-
-    <div class="toggle-container">
-        <input type="checkbox" id="mode-toggle">
-        <label for="mode-toggle" class="toggle"></label>
+<section id="projetos">
+    <h2>Projetos</h2>
+    <div class="projects-grid">
+        <div class="project">
+            <h3>Izing</h3>
+            <a href="#" class="details-button">Ver mais</a>
+        </div>
     </div>
+</section>
 
-    <script>
-        // Toggle modo claro/escuro com persistência
-        const modeToggle = document.getElementById('mode-toggle');
-        const body = document.body;
-        if(localStorage.getItem('theme')==='light'){ body.classList.add('light-mode'); modeToggle.checked=true; }
-        else{ body.classList.add('dark-mode'); }
+<section id="contato">
+    <h2>Contato</h2>
+    <a href="https://wa.me/5544984531288" class="details-button">WhatsApp</a>
+</section>
 
-        modeToggle.addEventListener('change', ()=>{
-            if(modeToggle.checked){ body.classList.replace('dark-mode','light-mode'); localStorage.setItem('theme','light'); }
-            else{ body.classList.replace('light-mode','dark-mode'); localStorage.setItem('theme','dark'); }
+</main>
+
+<footer>
+    <div id="datetime"></div>
+    <p>© 2024 DMF SYSTEM</p>
+</footer>
+
+<div class="toggle-container">
+    <input type="checkbox" id="mode-toggle">
+    <label for="mode-toggle">Modo</label>
+</div>
+
+<script>
+// Tema
+const toggle = document.getElementById('mode-toggle');
+const body = document.body;
+
+toggle.addEventListener('change', () => {
+    body.classList.toggle('light-mode');
+    body.classList.toggle('dark-mode');
+});
+
+// Data
+function updateDateTime(){
+    const now = new Date();
+    document.getElementById("datetime").textContent =
+        now.toLocaleString('pt-BR');
+}
+setInterval(updateDateTime,1000);
+
+// LOCALIZAÇÃO CORRIGIDA ✅
+function getUserLocation() {
+    fetch('https://ipwho.is/')
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("user-location").textContent =
+                `Você está em: ${data.city}, ${data.region}, ${data.country}`;
+        })
+        .catch(() => {
+            document.getElementById("user-location").textContent =
+                "Não foi possível obter a localização.";
         });
+}
 
-        // Data e hora formatada
-        function updateDateTime(){
-            const now = new Date();
-            const formatted = new Intl.DateTimeFormat('pt-BR',{ dateStyle:'full', timeStyle:'short'}).format(now);
-            document.getElementById("datetime").textContent = formatted;
-        }
-        setInterval(updateDateTime,1000);
-        updateDateTime();
+getUserLocation();
+</script>
 
-        // Função de localização do usuário (mantida exatamente como você pediu)
-        function getUserLocation() {
-            fetch('http://ip-api.com/json')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById("user-location").textContent = `Você está acessando de: ${data.city}, ${data.country} (IP: ${data.query})`;
-                })
-                .catch(() => {
-                    document.getElementById("user-location").textContent = "Não foi possível obter a localização.";
-                });
-        }
-        getUserLocation();
-    </script>
 </body>
 </html>
