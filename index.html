@@ -5,9 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DMF SYSTEM</title>
 
+<!-- PARTICLES -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
 <style>
 :root {
-    --primary: #007bff;
+    --primary: #00ffcc;
     --bg: #0d1117;
     --card: #161b22;
     --text: #e6edf3;
@@ -17,8 +20,16 @@
 
 body {
     font-family: Arial;
-    background: var(--bg);
     color: var(--text);
+}
+
+/* FUNDO PARTICULAS */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: var(--bg);
+    z-index: -1;
 }
 
 /* NAV */
@@ -26,7 +37,7 @@ nav {
     position: fixed;
     top: 0;
     width: 100%;
-    background: #000;
+    background: rgba(0,0,0,0.8);
     padding: 15px;
     text-align: center;
 }
@@ -68,7 +79,7 @@ main {
     display: inline-block;
     background: var(--primary);
     padding: 10px 20px;
-    color: #fff;
+    color: #000;
     border-radius: 5px;
     text-decoration: none;
 }
@@ -92,6 +103,9 @@ main {
 </head>
 
 <body>
+
+<!-- FUNDO -->
+<div id="particles-js"></div>
 
 <nav>
     <a href="#">Sobre</a>
@@ -121,7 +135,7 @@ main {
 <div id="location-box">🔄 Detectando localização...</div>
 
 <script>
-// 🌍 LOCALIZAÇÃO (ROBUSTA)
+// 🌍 LOCALIZAÇÃO + CLIMA + BANDEIRA
 async function getLocation() {
     const box = document.getElementById("location-box");
 
@@ -135,10 +149,8 @@ async function getLocation() {
         const country = data.country;
         const code = data.country_code.toLowerCase();
 
-        // 🇧🇷 Bandeira
         const flag = `https://flagcdn.com/w40/${code}.png`;
 
-        // 🌤️ CLIMA (Open-Meteo)
         const weatherRes = await fetch(
             `https://api.open-meteo.com/v1/forecast?latitude=${data.latitude}&longitude=${data.longitude}&current_weather=true`
         );
@@ -157,6 +169,22 @@ async function getLocation() {
 }
 
 getLocation();
+
+// 🎆 PARTICLES CONFIG
+particlesJS("particles-js", {
+  particles: {
+    number: { value: 100 },
+    color: { value: "#00ffcc" },
+    size: { value: 3 },
+    move: { speed: 1.5 },
+    line_linked: {
+      enable: true,
+      distance: 140,
+      color: "#00ffcc",
+      opacity: 0.4
+    }
+  }
+});
 </script>
 
 </body>
